@@ -11,7 +11,7 @@ ENV WINE_VERSION="4.0.3-r0"
 
 RUN apk add --no-cache freetype="${FREETYPE_VERSION}" ncurses="${NCURSES_VERSION}" wine="${WINE_VERSION}" && wineboot
 
-ENV JAVA_VERSION="15.0.2+7"
+ENV JAVA_VERSION="16.0.1+9"
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
