@@ -1,4 +1,4 @@
-From alpine:3.13.5@sha256:a8409dff6597f2ef5f7ecd3c672671bb2af9a390073efd74f95c54aa41cba22a
+From alpine:3.13.5@sha256:69e70a79f2d41ab5d637de98c1e0b055206ba40a8145e7bddb55ccc04e13cf8f
 
 # renovate: datasource=repology depName=alpine_3_13/freetype versioning=loose
 ENV FREETYPE_VERSION="2.10.4-r1"
