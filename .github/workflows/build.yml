@@ -1,0 +1,48 @@
+---
+name: Docker Image CI
+on:  # yamllint disable-line rule:truthy
+  - push
+  - pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: codespell-project/actions-codespell@master
+        with:
+          check_filenames: true
+          check_hidden: true
+      - uses: ibiqlik/action-yamllint@v3
+        with:
+          strict: true
+      - uses: ludeeus/action-shellcheck@master
+      - uses: hadolint/hadolint-action@v1.5.0
+        with:
+          dockerfile: Dockerfile
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: craigandrews/wine-adoptopenjdk
+      - name: Login to DockerHub
+        if: >-
+          ${{
+          github.event_name != 'pull_request'
+          && github.repository == 'candrews/wine-adoptopenjdk'
+          }}
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        if: >-
+          ${{
+          github.event_name != 'pull_request'
+          && github.repository == 'candrews/wine-adoptopenjdk'
+          }}
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
