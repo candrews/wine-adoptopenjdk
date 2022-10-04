@@ -11,7 +11,7 @@ ENV WINE_VERSION="4.0.3-r0"
 
 RUN apk add --no-cache freetype="${FREETYPE_VERSION}" ncurses="${NCURSES_VERSION}" wine="${WINE_VERSION}" && wineboot
 
-
+# renovate: datasource=adoptium-java depName=java
 ENV JAVA_VERSION="17.0.4.1+1"
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
