@@ -1,18 +1,18 @@
 From alpine:3.13.5@sha256:1d30d1ba3cb90962067e9b29491fbd56997979d54376f23f01448b5c5cd8b462
 
 # renovate: datasource=repology depName=alpine_3_13/freetype versioning=loose
-ENV FREETYPE_VERSION="2.10.4-r3"
+ARG FREETYPE_VERSION="2.10.4-r3"
 
 # renovate: datasource=repology depName=alpine_3_13/ncurses versioning=loose
-ENV NCURSES_VERSION="6.2_p20210109-r1"
+ARG NCURSES_VERSION="6.2_p20210109-r1"
 
 # renovate: datasource=repology depName=alpine_3_13/wine versioning=loose
-ENV WINE_VERSION="4.0.3-r0"
+ARG WINE_VERSION="4.0.3-r0"
 
 RUN apk add --no-cache freetype="${FREETYPE_VERSION}" ncurses="${NCURSES_VERSION}" wine="${WINE_VERSION}" && wineboot
 
 # renovate: datasource=adoptium-java depName=java
-ENV JAVA_VERSION="17.0.4.1+1"
+ARG JAVA_VERSION="17.0.4.1+1"
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
