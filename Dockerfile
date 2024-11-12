@@ -1,15 +1,6 @@
-From alpine:3.13.5@sha256:1d30d1ba3cb90962067e9b29491fbd56997979d54376f23f01448b5c5cd8b462
+From alpine:3.20.3@sha256:1e42bbe2508154c9126d48c2b8a75420c3544343bf86fd041fb7527e017a4b4a
 
-# renovate: datasource=repology depName=alpine_3_13/freetype versioning=loose
-ARG FREETYPE_VERSION="2.10.4-r3"
-
-# renovate: datasource=repology depName=alpine_3_13/ncurses versioning=loose
-ARG NCURSES_VERSION="6.2_p20210109-r1"
-
-# renovate: datasource=repology depName=alpine_3_13/wine versioning=loose
-ARG WINE_VERSION="4.0.3-r0"
-
-RUN apk add --no-cache freetype="${FREETYPE_VERSION}" ncurses="${NCURSES_VERSION}" wine="${WINE_VERSION}" && wineboot
+RUN apk add --no-cache freetype ncurses wine && wineboot
 
 ARG JAVA_VERSION="21.0.5-11"
 
