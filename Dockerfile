@@ -10,7 +10,7 @@ RUN adduser -D java -u 1005 && apk add --no-cache freetype ncurses wine
 ARG JAVA_VERSION="25.0.1-8"
 
 RUN wget -q "https://github.com/adoptium/temurin$(echo "${JAVA_VERSION}" | head -c2)-binaries/releases/download/jdk-$(echo "${JAVA_VERSION}" | sed "s/-/+/g")/OpenJDK$(echo "${JAVA_VERSION}" | head -c2)U-jdk_x64_windows_hotspot_$(echo "${JAVA_VERSION}" | sed "s/-/_/g").zip" -O /tmp/openjdk-windows.zip && \
-    unzip /tmp/openjdk-windows.zip -d /tmp && mv "/tmp/jdk-$(echo "${JAVA_VERSION}" | sed "s/-/+/g")" /opt/openjdk-windows && rm /tmp/openjdk-windows.zip
+    unzip /tmp/openjdk-windows.zip -d /tmp && mv "/tmp/jdk-$(echo "${JAVA_VERSION}" | sed "s/-/+/g")" /opt/openjdk-windows && rm /tmp/openjdk-windows.zip && chmod -R ugo+rX /opt/openjdk-windows
 COPY java-windows-delegate.sh /usr/bin/java-windows-delegate.sh
 RUN chmod +x /usr/bin/java-windows-delegate.sh && \
     ln -s java-windows-delegate.sh /usr/bin/java && \
