@@ -1,12 +1,13 @@
 {
   "extends": [
-    "config:base",
-    "regexManagers:dockerfileVersions"
+    "config:recommended",
+    "customManagers:dockerfileVersions"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": [
-        "(^|/|\\.)Dockerfile$', '(^|/)Dockerfile[^/]*$"
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/|\\.)Dockerfile$', '(^|/)Dockerfile[^/]*$/"
       ],
       "matchStrings": [
         "ARG\\s+JAVA_VERSION\\s*=\\s*\"(?<currentValue>.+?)\""
